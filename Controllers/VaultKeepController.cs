@@ -34,11 +34,11 @@ namespace keepr.Controllers
       }
       return Ok(found);
     }
-    //GET KeepS BY VAULTKEEP ID
-    [HttpGet("{id}/keeps")]
+    //GET VAULTKEEPSS BY VAULTKEEP ID
+    [HttpGet("{id}/vaultkeeps")]
     public ActionResult<IEnumerable<VaultKeep>> GetKeeps(int id)
     {
-      return Ok(_vkr.GetKeeps(id));
+      return Ok(_vkr.GetVaultKeeps(id));
     }
     //CREATE
     [HttpPost]
