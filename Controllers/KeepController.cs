@@ -5,12 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Controllers
 {
+  [Route("api/[controller]")]
+  [ApiController]
   public class KeepsController : ControllerBase
   {
     private readonly KeepRepository _kr;
     public KeepsController(KeepRepository kr)
     {
       _kr = kr;
+    }
+    //CREATE
+    [HttpPost]
+    public ActionResult<Keep> Create([FromBody] Keep keepy)
+    {
+      Keep newKeepy = _kr.CreateKeep(keepy);
+      if (newKeepy == null)
+      {
+        return BadRequest("Can't create that Keep!");
+      }
+      return Ok(newKeepy);
     }
     //GETALL
     [HttpGet]
@@ -39,17 +52,6 @@ namespace keepr.Controllers
     public ActionResult<IEnumerable<Keep>> GetKeeps(int id)
     {
       return Ok(_kr.GetKeeps(id));
-    }
-    //CREATE
-    [HttpPost]
-    public ActionResult<Keep> Create([FromBody] Keep keepy)
-    {
-      Keep newKeepy = _kr.CreateKeep(keepy);
-      if (newKeepy == null)
-      {
-        return BadRequest("Can't create that Keep!");
-      }
-      return Ok(newKeepy);
     }
     //DELETE
     [HttpDelete]

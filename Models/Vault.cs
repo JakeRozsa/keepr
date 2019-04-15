@@ -11,7 +11,8 @@ namespace keepr.Models
     [MinLength(3, ErrorMessage = "Name must be minimum 3 characters.")]
     public string Description { get; set; }
     public int Id { get; set; }
-    public int UserId { get; set; }
+    [Required]
+    public string UserId { get; set; }
 
   }
 }

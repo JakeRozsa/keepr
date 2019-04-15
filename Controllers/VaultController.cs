@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Controllers
 {
+  [Route("api/[controller]")]
+  [ApiController]
   public class VaultsController : ControllerBase
   {
     private readonly VaultRepository _vr;
@@ -25,9 +27,9 @@ namespace keepr.Controllers
     }
     //GETBYID
     [HttpGet("{id}")]
-    public ActionResult<Vault> GetById(int id)
+    public ActionResult<Vault> GetByVId(int id)
     {
-      Vault found = _vr.GetById(id);
+      Vault found = _vr.GetByVId(id);
       if (found == null)
       {
         return BadRequest();

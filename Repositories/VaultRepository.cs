@@ -20,8 +20,8 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-        INSERT INTO vaults (name, description)
-        VALUES  (@Name, @Description);
+        INSERT INTO vaults (name, description, userId)
+        VALUES  (@Name, @Description, @UserId);
         SELECT LAST_INSERT_ID();", vaulty);
         vaulty.Id = id;
         return vaulty;
@@ -38,7 +38,7 @@ namespace keepr.Repositories
       return _db.Query<Vault>("SELECT * FROM vaults");
     }
     //GETBYID
-    public Vault GetById(int Id)
+    public Vault GetByVId(int Id)
     {
       return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id =@Id", new { Id });
     }

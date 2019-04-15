@@ -20,8 +20,8 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-        INSERT INTO vaults (name, description)
-        VALUES  (@Name, @Description);
+        INSERT INTO vaultkeeps (keepId, vaultId, userId)
+        VALUES  (@KeepId, @VaultId, UserId);
         SELECT LAST_INSERT_ID();", vaultKeeper);
         vaultKeeper.Id = id;
         return vaultKeeper;
@@ -38,9 +38,9 @@ namespace keepr.Repositories
       return _db.Query<VaultKeep>("SELECT * FROM vaultkeeps");
     }
     //GETBYID
-    public VaultKeep GetById(int Id)
+    public VaultKeep GetByVId(int Id)
     {
-      return _db.QueryFirstOrDefault<VaultKeep>("SELECT * FROM vaultkeeps WHERE id =@Id", new { Id });
+      return _db.QueryFirstOrDefault<VaultKeep>("SELECT * FROM vaults WHERE id =@Id", new { Id });
     }
     //GET VAULTKeeps BY VAULT ID
     public IEnumerable<Vault> GetVaultKeeps(int id)

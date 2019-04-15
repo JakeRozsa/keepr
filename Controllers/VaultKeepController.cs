@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Controllers
 {
-  public class VaultKeepsController : ControllerBase
+  [Route("api/[controller]")]
+  [ApiController]
+  public class VaultkeepsController : ControllerBase
   {
     private readonly VaultKeepRepository _vkr;
-    public VaultKeepsController(VaultKeepRepository vkr)
+    public VaultkeepsController(VaultKeepRepository vkr)
     {
       _vkr = vkr;
     }
     //GETALL
     [HttpGet]
-    public ActionResult<IEnumerable<VaultKeepsController>> Get()
+    public ActionResult<IEnumerable<VaultkeepsController>> Get()
     {
       IEnumerable<VaultKeep> results = _vkr.GetALL();
       if (results == null)
@@ -25,9 +27,9 @@ namespace keepr.Controllers
     }
     //GETBYID
     [HttpGet("{id}")]
-    public ActionResult<VaultKeep> GetById(int id)
+    public ActionResult<VaultKeep> GetByVId(int id)
     {
-      VaultKeep found = _vkr.GetById(id);
+      VaultKeep found = _vkr.GetByVId(id);
       if (found == null)
       {
         return BadRequest();

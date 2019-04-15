@@ -13,6 +13,8 @@ namespace keepr.Models
     [Range(1, int.MaxValue)]
     public int KeepId { get; set; }
     public int Id { get; set; }
+    public string UserId { get; set; }
+
 
   }
 }

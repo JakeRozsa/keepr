@@ -1,24 +1,51 @@
 <template>
-  <div class="home">
-    <h1>Welcome Home</h1>
-    <home></home>
+  <div class="row">
+    <div class="home bg col">
+      <div class="row">
+        <div class="col-12">
+          <login></login>
+        </div>
+      </div>
+      <div class="row">
+        <add-keep></add-keep>
+      </div>
+      <div class="row">
+        <keeps v-for="keep in keeps" :keepData="keep"></keeps>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import Home from '@/components/home.vue'
+  import Keeps from "@/components/Keeps.vue"
+  import Login from "@/components/Login.vue"
+  import AddKeep from "@/components/AddKeep.vue"
+
   export default {
     name: "home",
+    data() {
+      return {}
+    },
     mounted() {
-      //blocks users not logged in
-      if (!this.$store.state.user.id) {
-        this.$router.push({ name: "login" });
+      this.$store.dispatch('getKeeps')
+    },
+    computed: {
+      keeps() {
+        return this.$store.state.keeps
       }
     },
-    computed: {},
     methods: {},
     components: {
-      Home
-    },
+      Keeps,
+      Login,
+      AddKeep
+    }
   };
 </script>
+
+<style>
+  .bg {
+    background-color: #a0fcff;
+    height: 100vh;
+  }
+</style>
