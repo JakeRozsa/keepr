@@ -1,6 +1,6 @@
 <template>
   <header class="row">
-    <div class="col-6 logo">
+    <div class="col-12 col-md-6 logo">
       <ul class="nav row">
         <li class="nav-item col-4">
           <a href="">Keepr</a>
@@ -13,27 +13,29 @@
         </li>
       </ul>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 bool-flip" @click="loginForm = !loginForm">
+          <p v-if="loginForm">Register here</p>
+          <p v-else>Login here</p>
+        </div>
+        <div class="col-12 lf" v-if="user == null">
           <form v-if="loginForm" @submit.prevent="loginUser">
             <input type="email" v-model="creds.email" placeholder="email">
             <input type="password" v-model="creds.password" placeholder="password">
-            <button type="submit">Login</button>
+            <br>
+            <button type="submit" class="btn btn-success">Login</button>
           </form>
           <form v-else @submit.prevent="register">
             <input type="text" v-model="newUser.username" placeholder="name">
             <input type="email" v-model="newUser.email" placeholder="email">
             <input type="password" v-model="newUser.password" placeholder="password">
+            <br>
             <button type="submit">Create Account</button>
           </form>
         </div>
-        <div class="col-12" @click="loginForm = !loginForm">
-          <p v-if="loginForm">Register here</p>
-          <p v-else>Login here</p>
-        </div>
       </div>
-      <div class="row">
+      <div class="row" v-if="user != null">
         <div class="col login">
           <button class="logout btn-danger" @click="logoutUser">Logout</button>
         </div>
@@ -73,19 +75,24 @@
       logoutUser() {
         this.$store.dispatch("logout")
       }
+    },
+    computed: {
+      User() {
+        return this.$store.state.user
+      }
     }
   };
 </script>
 
 <style>
   header {
-    position: sticky;
+    position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
     background-color: rgb(2, 48, 48);
     padding: 5px;
-    margin-bottom: 5px;
+    z-index: 5;
   }
 
   .logo {
@@ -101,5 +108,14 @@
   .logout {
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
+  }
+
+  .bool-flip {
+    margin-bottom: -15px;
+  }
+
+  .lf {
+    display: flex;
+    justify-content: center;
   }
 </style>
