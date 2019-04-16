@@ -32,6 +32,9 @@
       return {}
     },
     mounted() {
+      if (!this.$store.state.user.id) {
+        this.$router.push({ name: "loggin" });
+      }
       this.$store.dispatch('getKeeps')
     },
     computed: {
@@ -55,7 +58,7 @@
   }
 
   .show-top {
-    margin-top: 15vh;
+    margin-top: 20vh;
   }
 
   @media only screen and (max-width: 450px) {

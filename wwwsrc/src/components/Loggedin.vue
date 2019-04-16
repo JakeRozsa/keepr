@@ -6,7 +6,7 @@
           <a @click="$router.push({name:'home'})">Keepr</a>
         </li>
         <li class="nav-item col-4">
-          <a @click="$router.push({name:'vaults'})">Vaults</a>
+          <a @click="$router.push({name:'loggedin'})">Vaults</a>
         </li>
         <li class="nav-item col-4">
           <a @click="$router.push({name:'about'})">About</a>
@@ -35,11 +35,6 @@
           </form>
         </div>
       </div>
-      <div class="row">
-        <div class="col login">
-          <button class="logout btn-danger" @click="logoutUser">Logout</button>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -47,7 +42,7 @@
 
 <script>
   export default {
-    name: "login",
+    name: "loggedin",
     mounted() {
       //checks for valid session
       this.$store.dispatch("authenticate");
@@ -67,17 +62,11 @@
       };
     },
     methods: {
-      register() {
-        this.$store.dispatch("register", this.newUser);
-      },
-      loginUser() {
-        this.$store.dispatch("login", this.creds);
-      },
-      logoutUser() {
-        this.$store.dispatch("logout")
-      }
     },
     computed: {
+      User() {
+        return this.$store.state.user
+      }
     }
   };
 </script>
@@ -106,14 +95,5 @@
   .logout {
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
-  }
-
-  .bool-flip {
-    margin-bottom: -15px;
-  }
-
-  .lf {
-    display: flex;
-    justify-content: center;
   }
 </style>

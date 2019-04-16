@@ -48,7 +48,7 @@
 
   @media only screen and (max-width: 450px) {
     .keeps {
-      width: 85vw;
+      min-width: 90vw;
       margin-left: 4vw;
       text-align: center;
     }

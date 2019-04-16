@@ -11,25 +11,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="row">
-            <div class="col-10 form-group">
-              <label class="form-info" for="KeepName"> Keep Title</label>
-              <input type="text" class="form-control field" placeholder="Enter desired keep name here">
-            </div>
-            <div class="col-10 form-group">
-              <label class="form-info" for="KeepDesc"> Keep Description</label>
-              <input type="text" class="form-control field" placeholder="Enter keep description here">
-            </div>
-            <div class="col-10 form-group">
-              <label class="form-info" for="KeepImg"> Keep Image</label>
-              <input type="url" class="form-control field" placeholder="Enter Url to Image here">
-              <input type="file" class="form-control-file">
+          <form class="row" @submit.prevent='createKeep()'>
+            <input type="text" v-model="newKeep.name" class="form-control field"
+              placeholder="Enter desired keep name here">
+            <br>
+            <input type="text" v-model="newKeep.description" class="form-control field"
+              placeholder="Enter keep description here">
+            <br>
+            <input type="text" v-model="newKeep.img" class="form-control field" placeholder="Enter Image here">
+            <br>
+            <div>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-
         </div>
       </div>
     </div>
@@ -41,10 +35,23 @@
   export default {
     name: 'AddKeep',
     data() {
-      return {}
+      return {
+        newKeep: {
+          name: '',
+          description: '',
+          img: '',
+          UserId: this.$store.state.user.id
+        }
+      }
     },
-    computed: {},
-    methods: {},
+    computed: {
+    },
+    methods: {
+      createKeep() {
+        debugger
+        this.$store.dispatch('CreateKeep', this.newKeep)
+      }
+    },
     components: {}
   }
 </script>

@@ -30,6 +30,9 @@ export default new Vuex.Store({
     },
     setKeeps(state, data) {
       state.keeps = data
+    },
+    addKeep(state, data) {
+      state.keeps.push(data)
     }
   },
   actions: {
@@ -48,10 +51,10 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'home' })
+          // router.push({ name: 'home' })
         })
         .catch(e => {
-          router.push({ name: "login" })
+          router.push({ name: "loggin" })
           console.log('not authenticated')
         })
     },
@@ -69,6 +72,7 @@ export default new Vuex.Store({
       auth.delete('Logout')
         .then(res => {
           let data = {}
+          router.push({ name: 'loggin' })
           commit('setUser', data)
         })
     },
@@ -78,6 +82,15 @@ export default new Vuex.Store({
       api.get('/keeps')
         .then(res => {
           commit('setKeeps', res.data)
+        })
+    },
+    CreateKeep({ commit, dispatch }, payload) {
+      debugger
+      console.log(payload)
+      api.post('/keeps', payload)
+        .then(res => {
+          commit('addKeep', res.data)
+          dispatch('getKeeps', res.data)
         })
     }
   }
