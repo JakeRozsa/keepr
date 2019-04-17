@@ -43,6 +43,7 @@
     },
     mounted() {
       this.$store.dispatch('getVaults')
+      this.$store.dispatch('getMyKeeps')
     },
     computed: {
       vaults() {

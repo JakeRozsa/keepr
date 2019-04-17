@@ -5,7 +5,7 @@
         <li class="nav-item col-4">
           <img @click="$router.push({name:'home'})" class="klogo" src="@/assets/keeprlogo.png" alt="">
         </li>
-        <li class="nav-item col-4">
+        <li v-if="activeUser.active" class="nav-item col-4">
           <a @click="$router.push({name:'profile'}), myKeeps()">Profile</a>
         </li>
         <li class="nav-item col-4">
@@ -23,15 +23,13 @@
           <form v-if="loginForm" @submit.prevent="loginUser">
             <input type="email" v-model="creds.email" placeholder="email">
             <input type="password" v-model="creds.password" placeholder="password">
-            <br>
-            <button type="submit" class="btn btn-success">Login</button>
+            <button class="btn btn-success lgnbtn" type="submit">Login</button>
           </form>
           <form v-else @submit.prevent="register">
             <input type="text" v-model="newUser.username" placeholder="name">
             <input type="email" v-model="newUser.email" placeholder="email">
             <input type="password" v-model="newUser.password" placeholder="password">
-            <br>
-            <button type="submit">Create Account</button>
+            <button class="btn btn-success lgnbtn" type="submit">Create Account</button>
           </form>
         </div>
       </div>
@@ -96,6 +94,11 @@
     padding: 5px;
     z-index: 5;
     margin-bottom: 5px;
+    height: 80px;
+  }
+
+  .lgnbtn {
+    margin-left: 5px;
   }
 
   .nav-item {
@@ -110,6 +113,8 @@
   }
 
   .login {
+    margin-top: 15px;
+    margin-right: 10px;
     display: flex;
     justify-content: flex-end;
   }

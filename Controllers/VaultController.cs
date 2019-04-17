@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using keepr.Models;
 using keepr.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Controllers
@@ -14,11 +15,13 @@ namespace keepr.Controllers
     {
       _vr = vr;
     }
-    //GETALL
+    //GETALLbyUserID
+    [Authorize]
     [HttpGet]
-    public ActionResult<IEnumerable<VaultsController>> Get()
+    public ActionResult<IEnumerable<Vault>> Get()
     {
-      IEnumerable<Vault> results = _vr.GetALL();
+      var userId = HttpContext.User.Identity.Name;
+      IEnumerable<Vault> results = _vr.GetByUserId(userId);
       if (results == null)
       {
         return BadRequest();
@@ -26,16 +29,16 @@ namespace keepr.Controllers
       return Ok(results);
     }
     //GETBYID
-    [HttpGet("{id}")]
-    public ActionResult<Vault> GetByVId(int id)
-    {
-      Vault found = _vr.GetByVId(id);
-      if (found == null)
-      {
-        return BadRequest();
-      }
-      return Ok(found);
-    }
+    // [HttpGet("{id}")]
+    // public ActionResult<Vault> GetByVId(int id)
+    // {
+    //   Vault found = _vr.GetByVId(id);
+    //   if (found == null)
+    //   {
+    //     return BadRequest("getvaultbyid");
+    //   }
+    //   return Ok(found);
+    // }
     //GET VAULTS BY KEEP ID
     [HttpGet("{id}/keeps")]
     public ActionResult<IEnumerable<Vault>> GetVaults(int id)

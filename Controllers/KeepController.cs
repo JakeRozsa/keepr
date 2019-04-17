@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using keepr.Models;
 using keepr.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace keepr.Controllers
 {
@@ -27,7 +28,7 @@ namespace keepr.Controllers
     }
     //GETALL
     [HttpGet]
-    public ActionResult<IEnumerable<KeepsController>> Get()
+    public ActionResult<IEnumerable<Keep>> Get()
     {
       IEnumerable<Keep> results = _kr.GetALL();
       if (results == null)
@@ -36,22 +37,31 @@ namespace keepr.Controllers
       }
       return Ok(results);
     }
-    //GETBYID
-    [HttpGet("profile/:id")]
-    public ActionResult<Keep> GetById(int id)
+    //GETBYUSERID
+    [Authorize]
+    [HttpGet("user/profile")]
+    public ActionResult<IEnumerable<Keep>> GetById()
     {
-      Keep found = _kr.GetById(id);
-      if (found == null)
+      var userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> results = _kr.GetByUserId(userId);
+      if (results == null)
       {
         return BadRequest();
       }
-      return Ok(found);
+      return Ok(results);
     }
     //GET KEEPS BY VAULT ID
-    [HttpGet("{id}/vaults")]
-    public ActionResult<IEnumerable<Keep>> GetKeeps(int id)
+    [Authorize]
+    [HttpGet("vaults/{id}")]
+    public ActionResult<IEnumerable<Keep>> GetKeeps()
     {
-      return Ok(_kr.GetKeeps(id));
+      var userId = HttpContext.User.Identity.Name;
+      IEnumerable<Vault> results = _kr.GetKeeps(userId);
+      if (results == null)
+      {
+        return BadRequest();
+      }
+      return Ok(results);
     }
     //DELETE
     [HttpDelete]

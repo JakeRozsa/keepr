@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using keepr.Models;
 using keepr.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace keepr.Controllers
 {
@@ -14,34 +16,21 @@ namespace keepr.Controllers
     {
       _vkr = vkr;
     }
-    //GETALL
-    [HttpGet]
-    public ActionResult<IEnumerable<VaultkeepsController>> Get()
+
+    //GETBYVAULTID
+    [Authorize]
+    [HttpGet("vault/{id}")]
+    public ActionResult<IEnumerable<VaultKeep>> GetByVId()
     {
-      IEnumerable<VaultKeep> results = _vkr.GetALL();
+      var userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> results = _vkr.GetByVId(userId);
       if (results == null)
       {
         return BadRequest();
       }
       return Ok(results);
     }
-    //GETBYID
-    [HttpGet("{id}")]
-    public ActionResult<VaultKeep> GetByVId(int id)
-    {
-      VaultKeep found = _vkr.GetByVId(id);
-      if (found == null)
-      {
-        return BadRequest();
-      }
-      return Ok(found);
-    }
-    //GET VAULTKEEPSS BY VAULTKEEP ID
-    [HttpGet("{id}/vaultkeeps")]
-    public ActionResult<IEnumerable<VaultKeep>> GetKeeps(int id)
-    {
-      return Ok(_vkr.GetVaultKeeps(id));
-    }
+
     //CREATE
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep vaultKeeper)
@@ -49,7 +38,7 @@ namespace keepr.Controllers
       VaultKeep newVaultKeeper = _vkr.CreateVaultKeep(vaultKeeper);
       if (newVaultKeeper == null)
       {
-        return BadRequest("Can't create that Keep!");
+        return BadRequest("Can't create that VAULTKeep!");
       }
       return Ok(newVaultKeeper);
     }

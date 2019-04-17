@@ -1,12 +1,30 @@
 <template>
-  <div class="privatekeeps col-6 pkeep-card">
-    <img class="pkeep-img" :src="pkeepimg" alt="">
-    {{keeprData.name}}
-    {{keeprData.description}}
-    {{keeprData.isPrivate}}
-    {{keeprData.views}}
-    {{keeprData.keeps}}
-    {{keeprData.shares}}
+  <div class="privatekeeps col-6 ">
+    <div class="row">
+      <div class="col-12 keeprcard card">
+        <img class="pkeep-img card-img-top" :src="pkeepimg" alt="">
+        <hr>
+        <h2>{{keeprData.name}}</h2>
+        <h5>{{keeprData.description}}</h5>
+        <div class="row">
+          <div class="col-4">
+            <p>
+              <i class="far fa-eye"></i>
+              {{keeprData.views}}</p>
+          </div>
+          <div class="col-4">
+            <p>
+              <i class="fas fa-chess-rook"></i>
+              {{keeprData.keeps}}</p>
+          </div>
+          <div class="col-4">
+            <p>
+              <i class="fas fa-share"></i>
+              {{keeprData.shares}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,13 +48,17 @@
 
 
 <style scoped>
-  .pkeep-card {
-    max-height: 75vh;
+  h2 {
+    margin-top: -10px;
+  }
+
+  .keeprcard {
     display: flex;
     justify-content: center;
   }
 
+
   .pkeep-img {
-    object-fit: contain;
+    margin-top: 5px;
   }
 </style>

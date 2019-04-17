@@ -1,11 +1,16 @@
 <template>
   <div class="vaults col-12 card" @click="$router.push({name: 'activevault', params: {id:vaultData.id}})">
-    {{vaultData.name}}
+    <p>{{vaultData.name}}</p>
+    <p>{{vaultData.description}}</p>
+    VAULTS HERE
+    <vault-keeps></vault-keeps>
   </div>
 </template>
 
 
 <script>
+  import VaultKeeps from "@/components/VaultKeeps.vue"
+
   export default {
     name: 'vaults',
     props: ['vaultData'],
@@ -14,7 +19,9 @@
     },
     computed: {},
     methods: {},
-    components: {}
+    components: {
+      VaultKeeps
+    }
   }
 </script>
 

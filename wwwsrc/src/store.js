@@ -85,39 +85,47 @@ export default new Vuex.Store({
     },
     // #endregion
 
-    getKeeps({ commit, dispatch }, payload) {
-      api.get('/keeps')
-        .then(res => {
-          commit('setKeeps', res.data)
-        })
-    },
     CreateKeep({ commit, dispatch }, payload) {
       console.log(payload)
-      api.post('/keeps', payload)
+      api.post('keeps', payload)
         .then(res => {
           commit('addKeep', res.data)
           dispatch('getKeeps', res.data)
           dispatch('getMyKeeps', res.data)
         })
     },
-    getMyKeeps({ commit, dispatch }) {
-      api.get('/profile')
+    getKeeps({ commit, dispatch }, payload) {
+      api.get('keeps')
         .then(res => {
           commit('setKeeps', res.data)
+        })
+    },
+    getMyKeeps({ commit, dispatch }) {
+      api.get('keeps/user/profile')
+        .then(res => {
+          commit('setKeeps', res.data)
+        })
+    },
+    getVaultKeeps({ commit, dispatch }) {
+      api.get('keeps/vaults/:id')
+        .then(res => {
+          commit('setKeeps', res.data)
+        })
+    },
+    CreateVault({ commit, dispatch }, payload) {
+      debugger
+      api.post('/vaults', payload)
+        .then(res => {
+          console.log(res)
+          commit('addVault', res.data)
+          dispatch('getVaults', res.data)
+
         })
     },
     getVaults({ commit, dispatch }) {
       api.get('/vaults')
         .then(res => {
           commit('setVaults', res.data)
-        })
-    },
-    CreateVault({ commit, dispatch }, payload) {
-      api.post('/vaults', payload)
-        .then(res => {
-          console.log(res)
-          commit('addVault', res.data)
-          dispatch('setVaults', res.data)
         })
     }
   }
