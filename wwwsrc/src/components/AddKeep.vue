@@ -12,15 +12,23 @@
         </div>
         <div class="modal-body">
           <form class="row" @submit.prevent='createKeep()'>
-            <input type="text" v-model="newKeep.name" class="form-control field"
-              placeholder="Enter desired keep name here">
-            <br>
-            <input type="text" v-model="newKeep.description" class="form-control field"
-              placeholder="Enter keep description here">
-            <br>
-            <input type="text" v-model="newKeep.img" class="form-control field" placeholder="Enter Image here">
-            <br>
-            <div>
+            <div class="col-12 nkmodal">
+              <input type="text" v-model="newKeep.name" class="form-control field"
+                placeholder="Enter desired keep name here">
+            </div>
+            <div class="col-12 nkmodal">
+              <input type="text" v-model="newKeep.description" class="form-control field"
+                placeholder="Enter keep description here">
+            </div>
+            <div class="col-12 nkmodal">
+              <input type="text" v-model="newKeep.img" class="form-control field" placeholder="Enter Image here">
+            </div>
+            <div class="col-12 nkmodal">
+              <input type="checkbox" v-model="newKeep.isPrivate" value="true" class="form-control nkcheck">Mark as
+              private?
+            </div>
+            <div class="col-12 subbtn">
+              <hr>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
@@ -37,10 +45,7 @@
     data() {
       return {
         newKeep: {
-          name: '',
-          description: '',
-          img: '',
-          UserId: this.$store.state.user.id
+          UserId: this.$store.state.user.id,
         }
       }
     },
@@ -48,7 +53,6 @@
     },
     methods: {
       createKeep() {
-        debugger
         this.$store.dispatch('CreateKeep', this.newKeep)
       }
     },
@@ -80,5 +84,20 @@
     background-color: antiquewhite;
     display: flex;
     justify-content: center;
+  }
+
+  .subbtn {
+    margin-top: 10px;
+  }
+
+  .nkmodal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+  }
+
+  .nkcheck {
+    width: 20px;
+    margin-top: -7px;
   }
 </style>

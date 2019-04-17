@@ -22,7 +22,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    keeps: []
+    keeps: [],
+    vaults: []
   },
   mutations: {
     setUser(state, user) {
@@ -33,6 +34,12 @@ export default new Vuex.Store({
     },
     addKeep(state, data) {
       state.keeps.push(data)
+    },
+    setVaults(state, data) {
+      state.vaults = data
+    },
+    addVault(state, data) {
+      state.vaults.push(data)
     }
   },
   actions: {
@@ -54,7 +61,7 @@ export default new Vuex.Store({
           // router.push({ name: 'home' })
         })
         .catch(e => {
-          router.push({ name: "loggin" })
+          // router.push({ name: "loggin" })
           console.log('not authenticated')
         })
     },
@@ -72,7 +79,7 @@ export default new Vuex.Store({
       auth.delete('Logout')
         .then(res => {
           let data = {}
-          router.push({ name: 'loggin' })
+          // router.push({ name: 'loggin' })
           commit('setUser', data)
         })
     },
@@ -85,12 +92,32 @@ export default new Vuex.Store({
         })
     },
     CreateKeep({ commit, dispatch }, payload) {
-      debugger
       console.log(payload)
       api.post('/keeps', payload)
         .then(res => {
           commit('addKeep', res.data)
           dispatch('getKeeps', res.data)
+          dispatch('getMyKeeps', res.data)
+        })
+    },
+    getMyKeeps({ commit, dispatch }) {
+      api.get('/profile')
+        .then(res => {
+          commit('setKeeps', res.data)
+        })
+    },
+    getVaults({ commit, dispatch }) {
+      api.get('/vaults')
+        .then(res => {
+          commit('setVaults', res.data)
+        })
+    },
+    CreateVault({ commit, dispatch }, payload) {
+      api.post('/vaults', payload)
+        .then(res => {
+          console.log(res)
+          commit('addVault', res.data)
+          dispatch('setVaults', res.data)
         })
     }
   }

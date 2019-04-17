@@ -1,10 +1,10 @@
 <template>
-  <div class="col-11 col-md-4 keeps">
+  <div class="col-11 col-md-3 keeps">
     <div class="row">
       <div @click="$router.push({name: 'MainKeep', params: {id:keepData.id}})" class="col-12 card keep-card">
+        <img :src="keepimg" alt="" class="keep-img">
         {{keepData.name}}
         {{keepData.description}}
-        <img :src="keepimg" alt="" class="keep-img">
       </div>
     </div>
 
@@ -21,8 +21,9 @@
     },
     computed: {
       keepimg() {
-        return this.keepData.img || "@/assets/Image-Here6.png"
-      }
+        return this.keepData.img
+      },
+
     },
     methods: {
     },
@@ -32,7 +33,7 @@
 
 <style scoped>
   .keeps {
-    max-width: 30vw;
+    max-width: 22vw;
     margin: 5px 1vw;
   }
 

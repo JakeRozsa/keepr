@@ -1,9 +1,20 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app" class="container-fluid bg">
+    <login></login>
     <router-view />
   </div>
 </template>
 
+<script>
+  import Login from "@/components/Login.vue"
+
+  export default {
+    name: 'app',
+    components: {
+      Login
+    }
+  }
+</script>
 <style>
   #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -24,5 +35,11 @@
 
   #nav a.router-link-exact-active {
     color: #42b983;
+  }
+
+  .bg {
+    background-color: #ffffff;
+    min-height: 100vh;
+    padding-bottom: 15px;
   }
 </style>

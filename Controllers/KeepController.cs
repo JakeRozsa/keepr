@@ -37,7 +37,7 @@ namespace keepr.Controllers
       return Ok(results);
     }
     //GETBYID
-    [HttpGet("{id}")]
+    [HttpGet("profile/:id")]
     public ActionResult<Keep> GetById(int id)
     {
       Keep found = _kr.GetById(id);

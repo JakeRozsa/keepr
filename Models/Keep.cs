@@ -11,12 +11,14 @@ namespace keepr.Models
     [Required]
     [MinLength(3, ErrorMessage = "Name must be minimum 3 characters.")]
     public string Description { get; set; }
-    [Required]
     public string Img { get; set; }
     [DefaultValue(false)]
     public bool IsPrivate { get; set; }
+    [DefaultValue(0)]
     public int Views { get; set; }
+    [DefaultValue(0)]
     public int Shares { get; set; }
+    [DefaultValue(0)]
     public int Keeps { get; set; }
     public int Id { get; set; }
     [Required]

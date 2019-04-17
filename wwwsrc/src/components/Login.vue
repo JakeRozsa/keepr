@@ -3,10 +3,10 @@
     <div class="col-12 col-md-6 logo">
       <ul class="nav row">
         <li class="nav-item col-4">
-          <a @click="$router.push({name:'home'})">Keepr</a>
+          <img @click="$router.push({name:'home'})" class="klogo" src="@/assets/keeprlogo.png" alt="">
         </li>
         <li class="nav-item col-4">
-          <a @click="$router.push({name:'vaults'})">Vaults</a>
+          <a @click="$router.push({name:'profile'}), myKeeps()">Profile</a>
         </li>
         <li class="nav-item col-4">
           <a @click="$router.push({name:'about'})">About</a>
@@ -14,7 +14,7 @@
       </ul>
     </div>
     <div class="col-12 col-md-6">
-      <div class="row">
+      <div class="row" v-if="!activeUser.active">
         <div class="col-12 bool-flip" @click="loginForm = !loginForm">
           <p v-if="loginForm">Register here</p>
           <p v-else>Login here</p>
@@ -35,7 +35,7 @@
           </form>
         </div>
       </div>
-      <div class="row">
+      <div class="row" v-else>
         <div class="col login">
           <button class="logout btn-danger" @click="logoutUser">Logout</button>
         </div>
@@ -75,22 +75,33 @@
       },
       logoutUser() {
         this.$store.dispatch("logout")
-      }
+      },
+
     },
     computed: {
+      activeUser() {
+        return this.$store.state.user
+      }
     }
   };
 </script>
 
 <style>
   header {
-    position: fixed;
+    position: sticky;
     top: 0px;
     left: 0px;
     right: 0px;
     background-color: rgb(2, 48, 48);
     padding: 5px;
     z-index: 5;
+    margin-bottom: 5px;
+  }
+
+  .nav-item {
+    margin: auto;
+    color: azure;
+    cursor: pointer;
   }
 
   .logo {
@@ -104,6 +115,8 @@
   }
 
   .logout {
+    margin-top: 5px;
+    ;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
   }
@@ -115,5 +128,10 @@
   .lf {
     display: flex;
     justify-content: center;
+  }
+
+  .klogo {
+    max-height: 50px;
+    cursor: pointer;
   }
 </style>

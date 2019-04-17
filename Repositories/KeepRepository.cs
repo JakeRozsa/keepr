@@ -20,8 +20,8 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-        INSERT INTO keeps (name, description, userId, img)
-        VALUES  (@Name, @Description, @UserId, @Img);
+        INSERT INTO keeps (name, description, userId, img, isPrivate, views, shares, keeps)
+        VALUES  (@Name, @Description, @UserId, @Img, @IsPrivate, @Views, @Shares, @Keeps);
         SELECT LAST_INSERT_ID();", keepy);
         keepy.Id = id;
         return keepy;
@@ -35,7 +35,7 @@ namespace keepr.Repositories
     //GET
     public IEnumerable<Keep> GetALL()
     {
-      return _db.Query<Keep>("SELECT * FROM keeps");
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE isPrivate = 0");
     }
     //GETBYID
     public Keep GetById(int Id)

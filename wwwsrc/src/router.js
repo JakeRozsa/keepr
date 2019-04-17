@@ -3,11 +3,9 @@ import Router from 'vue-router'
 // @ts-ignore
 import Home from './views/Home.vue'
 // @ts-ignore
-import Loggin from './views/Loggin.vue'
-// @ts-ignore
 import About from './views/About.vue'
 // @ts-ignore
-import MainKeep from './views/MainKeep.vue'
+import Profile from './views/Profile.vue'
 
 
 Vue.use(Router)
@@ -20,19 +18,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/mainkeep/:id',
-      name: 'MainKeep',
-      component: MainKeep
-    },
-    {
-      path: '/account',
-      name: 'loggin',
-      component: Loggin
-    },
-    {
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })
