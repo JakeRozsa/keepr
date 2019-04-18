@@ -42,15 +42,11 @@ namespace keepr.Repositories
     {
       return _db.Query<Keep>("SELECT * FROM keeps WHERE userId =@UserId", new { UserId });
     }
-    //GETKEEPSBY VAULTID
-    public IEnumerable<Vault> GetKeeps(string userId)
-    {
-      return _db.Query<Vault>("SELECT * FROM vaults WHERE id = @id", new { userId });
-    }
+
     //DELETE
-    public bool Delete(int id)
+    public bool Delete(int id, string userId)
     {
-      int success = _db.Execute("DELETE FROM keeps WHERE id =@id", new { id });
+      int success = _db.Execute("DELETE FROM keeps WHERE id =@id AND userId = @userId", new { id, userId });
       return success > 0;
     }
     //EDIT????

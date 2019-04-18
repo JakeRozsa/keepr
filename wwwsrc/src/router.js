@@ -6,6 +6,11 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 // @ts-ignore
 import Profile from './views/Profile.vue'
+// @ts-ignore
+import MainKeep from './views/MainKeep.vue'
+// @ts-ignore
+import MainVault from './views/MainVault.vue'
+
 
 
 Vue.use(Router)
@@ -26,6 +31,18 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile
-    }
+    },
+    {
+      path: '/keeps/:id',
+      name: 'keep',
+      component: MainKeep,
+      props: true
+    },
+    {
+      path: '/vaults/:id',
+      name: 'vault',
+      component: MainVault,
+      props: true
+    },
   ]
 })

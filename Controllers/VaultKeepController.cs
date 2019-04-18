@@ -19,11 +19,11 @@ namespace keepr.Controllers
 
     //GETBYVAULTID
     [Authorize]
-    [HttpGet("vault/{id}")]
-    public ActionResult<IEnumerable<VaultKeep>> GetByVId()
+    [HttpGet("vaults/{vaultId}")]
+    public ActionResult<IEnumerable<VaultKeep>> GetByVId(int vaultId)
     {
       var userId = HttpContext.User.Identity.Name;
-      IEnumerable<Keep> results = _vkr.GetByVId(userId);
+      IEnumerable<Keep> results = _vkr.GetByVId(vaultId, userId);
       if (results == null)
       {
         return BadRequest();
@@ -32,9 +32,11 @@ namespace keepr.Controllers
     }
 
     //CREATE
+    [Authorize]
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep vaultKeeper)
     {
+      vaultKeeper.UserId = HttpContext.User.Identity.Name;
       VaultKeep newVaultKeeper = _vkr.CreateVaultKeep(vaultKeeper);
       if (newVaultKeeper == null)
       {

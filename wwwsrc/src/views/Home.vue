@@ -8,6 +8,7 @@
         <div class="col-12">
           <div class="row">
             <keeps v-for="keep in keeps" :keepData="keep"></keeps>
+            <active-keep></active-keep>
           </div>
         </div>
       </div>
@@ -17,7 +18,7 @@
 
 <script>
   import Keeps from "@/components/Keeps.vue"
-  import Vaults from "@/components/Vaults.vue"
+  import ActiveKeep from "@/components/ActiveKeep.vue"
 
   export default {
     name: "home",
@@ -25,9 +26,6 @@
       return {}
     },
     mounted() {
-      if (!this.$store.state.user.id) {
-        this.$router.push({ name: "loggin" });
-      }
       this.$store.dispatch('getKeeps')
       this.$store.dispatch('getVaults')
     },
@@ -42,7 +40,7 @@
     methods: {},
     components: {
       Keeps,
-      Vaults
+      ActiveKeep
     }
   };
 </script>

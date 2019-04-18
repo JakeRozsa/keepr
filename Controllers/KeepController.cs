@@ -50,24 +50,14 @@ namespace keepr.Controllers
       }
       return Ok(results);
     }
-    //GET KEEPS BY VAULT ID
-    [Authorize]
-    [HttpGet("vaults/{id}")]
-    public ActionResult<IEnumerable<Keep>> GetKeeps()
-    {
-      var userId = HttpContext.User.Identity.Name;
-      IEnumerable<Vault> results = _kr.GetKeeps(userId);
-      if (results == null)
-      {
-        return BadRequest();
-      }
-      return Ok(results);
-    }
+
     //DELETE
-    [HttpDelete]
+    [HttpDelete("{id}")]
+    [Authorize]
     public ActionResult<string> Delete(int id)
     {
-      bool successful = _kr.Delete(id);
+      var userId = HttpContext.User.Identity.Name;
+      bool successful = _kr.Delete(id, userId);
       if (!successful)
       {
         return BadRequest();

@@ -2,10 +2,14 @@
   <div class="privatekeeps col-6 ">
     <div class="row">
       <div class="col-12 keeprcard card">
-        <img class="pkeep-img card-img-top" :src="pkeepimg" alt="">
-        <hr>
-        <h2>{{keeprData.name}}</h2>
-        <h5>{{keeprData.description}}</h5>
+        <div class="row">
+          <div class="col-12" @click="$router.push({name:'keep', params: {id:keeprData.id}})">
+            <img class="pkeep-img card-img-top" :src="pkeepimg" alt="">
+            <hr>
+            <h2>{{keeprData.name}}</h2>
+            <h5>{{keeprData.description}}</h5>
+          </div>
+        </div>
         <div class="row">
           <div class="col-4">
             <p>
@@ -21,6 +25,9 @@
             <p>
               <i class="fas fa-share"></i>
               {{keeprData.shares}}</p>
+          </div>
+          <div class="col-3 offset-9">
+            <i class="fas fa-trash" @click="deleteKeep(keeprData)"></i>
           </div>
         </div>
       </div>
@@ -41,7 +48,11 @@
         return this.keeprData.img
       },
     },
-    methods: {},
+    methods: {
+      deleteKeep(keeprData) {
+        this.$store.dispatch('deleteKeep', keeprData)
+      }
+    },
     components: {}
   }
 </script>

@@ -1,15 +1,14 @@
 <template>
-  <div class="vaultkeeps card">
-    <!-- {{vaultKeepData.name}} -->
-    VAULTKEEPS
+  <div class="active-vault">
+    ACTIVE VAULT HERE
+
   </div>
 </template>
 
 
 <script>
   export default {
-    name: 'vaultkeeps',
-    props: ["vaultKeepData"],
+    name: 'active-vault',
     data() {
       return {}
     },

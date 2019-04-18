@@ -1,10 +1,33 @@
 <template>
-  <div class="ActiveKeep">
-    <h1>{{keep.name}}</h1>
-    <img class="activeimg" :src="keepimg" alt="">
-    <h2>{{keep.description}}</h2>
+  <div class="privatekeeps col-6 ">
+    <div class="row">
+      <div class="col-12 keeprcard card">
+        <img class="pkeep-img card-img-top" :src="pkeepimg" alt="">
+        <hr>
+        <h2>{{activeKeep.name}}</h2>
+        <h5>{{activeKeep.description}}</h5>
+        <div class="row">
+          <div class="col-4">
+            <p>
+              <i class="far fa-eye"></i>
+              {{activeKeep.views}}</p>
+          </div>
+          <div class="col-4">
+            <p>
+              <i class="fas fa-chess-rook"></i>
+              {{activeKeep.keeps}}</p>
+          </div>
+          <div class="col-4">
+            <p>
+              <i class="fas fa-share"></i>
+              {{activeKeep.shares}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
 
 
 <script>
@@ -13,13 +36,14 @@
     data() {
       return {}
     },
+    mounted() { },
     computed: {
-      keep() {
+      activeKeep() {
         return this.$store.state.keeps.find(k => k.id == this.$route.params.id)
       },
-      keepimg() {
-        return this.keep.img || "@/assets/Image-Here6.png"
-      }
+      pkeepimg() {
+        return this.activeKeep.img
+      },
     },
     methods: {},
     components: {}
