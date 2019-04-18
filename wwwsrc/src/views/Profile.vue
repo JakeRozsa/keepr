@@ -44,6 +44,9 @@
     mounted() {
       this.$store.dispatch('getVaults')
       this.$store.dispatch('getMyKeeps')
+      if (!this.$store.state.user.id) {
+        this.$router.push({ name: "home" });
+      }
     },
     computed: {
       vaults() {

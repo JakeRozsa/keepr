@@ -1,6 +1,5 @@
 <template>
   <div class="mainvault">
-    MAIN VAULT HERE
     <active-vault></active-vault>
 
 

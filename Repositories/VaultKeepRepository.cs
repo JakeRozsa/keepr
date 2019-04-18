@@ -41,9 +41,9 @@ WHERE(vaultId = @vaultId AND vk.userId = @UserId)
 ", new { vaultId, userId });
     }
     //DELETE
-    public bool Delete(int id)
+    public bool Delete(int keepId, int vaultId, string userId)
     {
-      int success = _db.Execute("DELETE FROM vaultkeeps WHERE id =@id", new { id });
+      int success = _db.Execute("DELETE FROM vaultkeeps WHERE keepId = @keepId AND vaultId = @vaultId AND userId = @userId;", new { keepId, vaultId, userId });
       return success > 0;
     }
     //EDIT????

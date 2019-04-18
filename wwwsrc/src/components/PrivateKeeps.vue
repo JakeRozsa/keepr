@@ -26,7 +26,17 @@
               <i class="fas fa-share"></i>
               {{keeprData.shares}}</p>
           </div>
-          <div class="col-3 offset-9">
+          <div class="dropdown col-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              + vault
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <vault-drop v-for="vault in vaults" :vaultData="vault" :keepData="keeprData"></vault-drop>
+
+            </div>
+          </div>
+          <div class="col-3 offset-6">
             <i class="fas fa-trash" @click="deleteKeep(keeprData)"></i>
           </div>
         </div>
@@ -37,6 +47,7 @@
 
 
 <script>
+  import VaultDrop from '@/components/VaultDrop.vue'
   export default {
     name: 'privatekeeps',
     props: ['keeprData'],
@@ -47,13 +58,19 @@
       pkeepimg() {
         return this.keeprData.img
       },
+      vaults() {
+        return this.$store.state.vaults
+      }
     },
     methods: {
       deleteKeep(keeprData) {
+        debugger
         this.$store.dispatch('deleteKeep', keeprData)
       }
     },
-    components: {}
+    components: {
+      VaultDrop
+    }
   }
 </script>
 

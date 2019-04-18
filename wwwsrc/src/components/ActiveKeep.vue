@@ -1,5 +1,5 @@
 <template>
-  <div class="privatekeeps col-6 ">
+  <div class="privatekeeps col-10 offset-1 ">
     <div class="row">
       <div class="col-12 keeprcard card">
         <img class="pkeep-img card-img-top" :src="pkeepimg" alt="">
@@ -52,5 +52,12 @@
 
 
 <style scoped>
+  .privatekeeps {
+    max-height: 75vh;
+  }
 
+  .pkeep-img {
+    max-height: 65vh;
+    object-fit: contain;
+  }
 </style>

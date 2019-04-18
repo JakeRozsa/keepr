@@ -28,17 +28,7 @@ namespace keepr.Controllers
       }
       return Ok(results);
     }
-    //GETBYID
-    // [HttpGet("{id}")]
-    // public ActionResult<Vault> GetByVId(int id)
-    // {
-    //   Vault found = _vr.GetByVId(id);
-    //   if (found == null)
-    //   {
-    //     return BadRequest("getvaultbyid");
-    //   }
-    //   return Ok(found);
-    // }
+
     //GET VAULTS BY KEEP ID
     [HttpGet("{id}/keeps")]
     public ActionResult<IEnumerable<Vault>> GetVaults(int id)
@@ -57,10 +47,12 @@ namespace keepr.Controllers
       return Ok(newVaulty);
     }
     //DELETE
-    [HttpDelete]
+    [HttpDelete("{id}")]
+    [Authorize]
     public ActionResult<string> Delete(int id)
     {
-      bool successful = _vr.Delete(id);
+      var userId = HttpContext.User.Identity.Name;
+      bool successful = _vr.Delete(id, userId);
       if (!successful)
       {
         return BadRequest();

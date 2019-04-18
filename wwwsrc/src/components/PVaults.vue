@@ -1,8 +1,14 @@
 <template>
   <div class="pvaults row">
-    <div class="col-12 card" @click="$router.push({name: 'vault', params: {id:vaultData.id}})">
-      <p>{{vaultData.name}} - {{vaultData.description}} {{vaultData.id}}</p>
-
+    <div class="col-12 card">
+      <div class="row">
+        <div class="col-11" @click="$router.push({name: 'vault', params: {id:vaultData.id}})">
+          <p>{{vaultData.name}} - {{vaultData.description}} {{vaultData.id}}</p>
+        </div>
+        <div class="col-1">
+          <i class="fas fa-trash" @click="deleteVault(vaultData)"></i>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,9 +30,9 @@
       }
     },
     methods: {
-      // viewVault(vaultId) {
-      //   this.$router.push({ name: 'vault', params: { vaultId: vaultId } })
-      // }
+      deleteVault(vaultData) {
+        this.$store.dispatch('deleteVault', vaultData)
+      }
     },
     components: {}
   }

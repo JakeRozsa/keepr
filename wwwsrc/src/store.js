@@ -28,20 +28,23 @@ export default new Vuex.Store({
     vaultKeeps: []
   },
   mutations: {
+    addKeep(state, data) {
+      state.keeps.push(data)
+    },
+    addVault(state, data) {
+      state.vaults.push(data)
+    },
+    addVaultKeep(state, data) {
+      state.vaultKeeps.push(data)
+    },
     setUser(state, user) {
       state.user = user
     },
     setKeeps(state, data) {
       state.keeps = data
     },
-    addKeep(state, data) {
-      state.keeps.push(data)
-    },
     setVaults(state, data) {
       state.vaults = data
-    },
-    addVault(state, data) {
-      state.vaults.push(data)
     },
     setVaultKeeps(state, data) {
       state.vaultKeeps = data
@@ -102,6 +105,28 @@ export default new Vuex.Store({
           dispatch('getMyKeeps', res.data)
         })
     },
+    CreateVault({ commit, dispatch }, payload) {
+      api.post('/vaults', payload)
+        .then(res => {
+          console.log(res)
+          commit('addVault', res.data)
+          dispatch('getVaults', res.data)
+
+        })
+    },
+    CreateVaultKeep({ commit, dispatch }, payload) {
+      api.post('/vaultkeeps', payload)
+        .then(res => {
+          console.log(res)
+          commit('addVaultKeep', res.data)
+        })
+    },
+    getActiveKeep({ commit, dispatch }) {
+      api.get('keeps')
+        .then(res => {
+          commit('setActiveKeep', res.data)
+        })
+    },
     getKeeps({ commit, dispatch }, payload) {
       api.get('keeps')
         .then(res => {
@@ -114,39 +139,34 @@ export default new Vuex.Store({
           commit('setKeeps', res.data)
         })
     },
-    deleteKeep({ commit, dispatch }, id) {
-      debugger
-      api.delete('keeps/' + id)
-        .then(res => {
-          dispatch('getKeeps', res.data)
-        })
-    },
-    getVaultKeeps({ commit, dispatch }, payload) {
-      api.get('vaultkeeps/vaults/' + payload)
-        .then(res => {
-          commit('setVaultKeeps', res.data)
-        })
-    },
-    CreateVault({ commit, dispatch }, payload) {
-      debugger
-      api.post('/vaults', payload)
-        .then(res => {
-          console.log(res)
-          commit('addVault', res.data)
-          dispatch('getVaults', res.data)
-
-        })
-    },
     getVaults({ commit, dispatch }) {
       api.get('/vaults')
         .then(res => {
           commit('setVaults', res.data)
         })
     },
-    getActiveKeep({ commit, dispatch }) {
-      api.get('keeps')
+    getVaultKeeps({ commit, dispatch }, payload) {
+      api.get('vaultkeeps/' + payload)
         .then(res => {
-          commit('setActiveKeep', res.data)
+          commit('setVaultKeeps', res.data)
+        })
+    },
+    deleteKeep({ commit, dispatch }, id) {
+      api.delete('keeps/' + id.id)
+        .then(res => {
+          dispatch('getKeeps', res.data.userId)
+        })
+    },
+    deleteVault({ commit, dispatch }, payload) {
+      api.delete('vaults/' + payload.id)
+        .then(res => {
+          dispatch('getVaults', res.data.userId)
+        })
+    },
+    deleteVaultKeep({ commit, dispatch }, payload) {
+      api.delete('vaultkeeps/' + payload.vaultId + '/' + payload.keepId)
+        .then(res => {
+          dispatch('getVaultKeeps', res.data)
         })
     },
   }

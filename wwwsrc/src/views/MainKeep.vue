@@ -1,6 +1,5 @@
 <template>
   <div class="mainkeep">
-    MAIN KEEP HERE
     <active-keep></active-keep>
   </div>
 </template>

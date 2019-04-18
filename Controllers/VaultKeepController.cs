@@ -19,7 +19,7 @@ namespace keepr.Controllers
 
     //GETBYVAULTID
     [Authorize]
-    [HttpGet("vaults/{vaultId}")]
+    [HttpGet("{vaultId}")]
     public ActionResult<IEnumerable<VaultKeep>> GetByVId(int vaultId)
     {
       var userId = HttpContext.User.Identity.Name;
@@ -45,10 +45,12 @@ namespace keepr.Controllers
       return Ok(newVaultKeeper);
     }
     //DELETE
-    [HttpDelete]
-    public ActionResult<string> Delete(int id)
+    [HttpDelete("{vaultId}/{keepId}")]
+    [Authorize]
+    public ActionResult<string> Delete(int keepId, int vaultId)
     {
-      bool successful = _vkr.Delete(id);
+      var userId = HttpContext.User.Identity.Name;
+      bool successful = _vkr.Delete(keepId, vaultId, userId);
       if (!successful)
       {
         return BadRequest();
