@@ -1,7 +1,7 @@
 <template>
   <div class="privatekeeps col-6 ">
     <div class="row">
-      <div class="col-12 keeprcard card">
+      <div class="col-11 keeprcard card mb-3">
         <div class="row">
           <div class="col-12" @click="$router.push({name:'keep', params: {id:keeprData.id}})">
             <img class="pkeep-img card-img-top" :src="pkeepimg" alt="">
@@ -83,6 +83,7 @@
   .keeprcard {
     display: flex;
     justify-content: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.555);
   }
 
 

@@ -6,7 +6,9 @@
         <h5>{{activeVault.description}}</h5>
       </div>
       <div class="col-12">
-        <vault-keeps v-for="vaultKeep in vaultKeeps" :vaultKeepData="vaultKeep"></vault-keeps>
+        <div class="row">
+          <vault-keeps v-for="vaultKeep in vaultKeeps" :vaultKeepData="vaultKeep"></vault-keeps>
+        </div>
       </div>
     </div>
 

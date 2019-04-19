@@ -6,7 +6,7 @@
           <img @click="$router.push({name:'home'})" class="klogo" src="@/assets/keeprlogo.png" alt="">
         </li>
         <li v-if="activeUser.active" class="nav-item col-4">
-          <a @click="$router.push({name:'profile'})">Profile</a>
+          <a @click="$router.push({name:'profile'})">Dashboard</a>
         </li>
         <li class="nav-item col-4">
           <a @click="$router.push({name:'about'})">About</a>

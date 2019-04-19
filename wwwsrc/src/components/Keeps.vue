@@ -1,10 +1,41 @@
 <template>
-  <div class="col-11 col-md-3 keeps">
+  <div class="privatekeeps col-4">
     <div class="row">
-      <div class="col-12 card keep-card" @click="$router.push({name:'keep', params: {id:keepData.id}})">
-        <img :src="keepimg" alt="" class="keep-img">
-        {{keepData.name}}
-        {{keepData.description}}
+      <div class="col-12 keeprcard card">
+        <div class="row">
+          <div class="col-12" @click="$router.push({name:'keep', params: {id:keepData.id}})">
+            <img class="pkeep-img card-img-top" :src="keepimg" alt="">
+            <hr>
+            <h2>{{keepData.name}}</h2>
+            <h5>{{keepData.description}}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p>
+              <i class="far fa-eye"></i>
+              {{keepData.views}}</p>
+          </div>
+          <div class="col-4">
+            <p>
+              <i class="fas fa-chess-rook"></i>
+              {{keepData.keeps}}</p>
+          </div>
+          <div class="col-4">
+            <p>
+              <i class="fas fa-share"></i>
+              {{keepData.shares}}</p>
+          </div>
+          <div class="dropdown col-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              + vault
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <vault-drop v-for="vault in vaults" :vaultData="vault" :keepData="keepData"></vault-drop>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -12,6 +43,7 @@
 
 
 <script>
+  import VaultDrop from '@/components/VaultDrop.vue'
   export default {
     name: 'Keeps',
     props: ['keepData'],
@@ -22,14 +54,18 @@
       keepimg() {
         return this.keepData.img
       },
-
+      vaults() {
+        return this.$store.state.vaults
+      }
     },
     methods: {
       setActiveKeep() {
         return this.$store.dispatch('getActiveKeep')
       }
     },
-    components: {}
+    components: {
+      VaultDrop
+    }
   }
 </script>
 
@@ -39,11 +75,6 @@
     margin: 5px 1vw;
   }
 
-  .keep-card {
-    max-height: 75vh;
-    display: flex;
-    justify-content: center;
-  }
 
   .keep-img {
     object-fit: contain;

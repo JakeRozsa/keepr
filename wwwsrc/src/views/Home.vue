@@ -5,9 +5,9 @@
 
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-10 offset-1">
           <div class="row">
-            <keeps v-for="keep in keeps" :keepData="keep"></keeps>
+            <keeps v-for="keep in keeps" :keepData="keep" :vaultData="vault"></keeps>
             <active-keep></active-keep>
           </div>
         </div>
@@ -32,9 +32,6 @@
     computed: {
       keeps() {
         return this.$store.state.keeps
-      },
-      vaults() {
-        return this.$store.state.vaults
       }
     },
     methods: {},

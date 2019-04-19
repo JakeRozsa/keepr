@@ -47,7 +47,7 @@
     methods: {
       deleteVaultKeep(vaultKeepData) {
         let vaultId = this.$route.params.id
-        let keepId = vaultKeepData.id
+        let keepId = vaultKeepData
         let payload = {
           vaultId,
           keepId

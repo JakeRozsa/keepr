@@ -16,7 +16,6 @@
     computed: {},
     methods: {
       addToVault(vaultData) {
-        debugger
         let vaultId = vaultData.id
         let keepId = this.keepData.id
         let payload = {
