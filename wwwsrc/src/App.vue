@@ -38,7 +38,7 @@
   }
 
   .bg {
-    background-color: #ffffff;
+    background-color: #f9f8eb;
     min-height: 100vh;
     padding-bottom: 15px;
   }

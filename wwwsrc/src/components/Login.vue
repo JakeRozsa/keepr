@@ -21,21 +21,21 @@
         </div>
         <div class="col-12 lf">
           <form v-if="loginForm" @submit.prevent="loginUser">
-            <input type="email" v-model="creds.email" placeholder="email">
-            <input type="password" v-model="creds.password" placeholder="password">
-            <button class="btn btn-success lgnbtn" type="submit">Login</button>
+            <input class="formsize" type="email" v-model="creds.email" placeholder="email">
+            <input class="formsize" type="password" v-model="creds.password" placeholder="password">
+            <button class="btn lgnbtn" type="submit">Login</button>
           </form>
           <form v-else @submit.prevent="register">
-            <input type="text" v-model="newUser.username" placeholder="name">
-            <input type="email" v-model="newUser.email" placeholder="email">
-            <input type="password" v-model="newUser.password" placeholder="password">
-            <button class="btn btn-success lgnbtn" type="submit">Create Account</button>
+            <input class="formsize" type="text" v-model="newUser.username" placeholder="name">
+            <input class="formsize" type="email" v-model="newUser.email" placeholder="email">
+            <input class="formsize" type="password" v-model="newUser.password" placeholder="password">
+            <button class="btn lgnbtn" type="submit">Create Account</button>
           </form>
         </div>
       </div>
       <div class="row" v-else>
         <div class="col login">
-          <button class="logout btn-danger" @click="logoutUser">Logout</button>
+          <button class="logout lgnbtn" @click="logoutUser">Logout</button>
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@
     top: 0px;
     left: 0px;
     right: 0px;
-    background-color: rgb(2, 48, 48);
+    background-color: #76b39d;
     padding: 5px;
     z-index: 5;
     margin-bottom: 5px;
@@ -100,6 +100,10 @@
 
   .lgnbtn {
     margin-left: 5px;
+    background-color: #05004e;
+    color: #f9f8eb;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
+
   }
 
   .nav-item {
@@ -118,13 +122,14 @@
     margin-right: 10px;
     display: flex;
     justify-content: flex-end;
+
   }
 
   .logout {
     margin-top: 5px;
-    ;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
+    border-style: none;
   }
 
   .bool-flip {
@@ -139,5 +144,11 @@
   .klogo {
     max-height: 50px;
     cursor: pointer;
+  }
+
+  .formsize {
+    width: 15vw;
+    margin-left: 3px;
+    border-radius: 4px;
   }
 </style>

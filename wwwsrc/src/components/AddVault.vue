@@ -44,7 +44,6 @@
     computed: {},
     methods: {
       createVault() {
-        debugger
         this.$store.dispatch('CreateVault', this.newVault)
       }
     },

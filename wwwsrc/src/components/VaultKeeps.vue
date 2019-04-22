@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 card">
+  <div class="col-5 offset-1 card vkcard">
     <div class="row">
       <div class="col-12" @click="$router.push({name:'keep', params: {id:vaultKeepData.id}})">
         <img class="pkeep-img card-img-top" :src="vkimg" alt="">
@@ -62,6 +62,10 @@
 
 <style scoped>
   .vkcard {
-    max-height: 80vh;
+    display: flex;
+    justify-content: center;
+    background-color: #a9c6de;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.555);
+    padding: 5px;
   }
 </style>

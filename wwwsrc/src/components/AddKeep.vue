@@ -1,9 +1,9 @@
 <template>
   <!-- Modal -->
-  <div class="modal fade AddKeep col-12" id="exampleModal" tabindex="-1" role="dialog"
+  <div class="modal fade addkeep col-12" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content modal-bg">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add a new Keep!</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -29,7 +29,7 @@
             </div>
             <div class="col-12 subbtn">
               <hr>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn addbtn">Submit</button>
             </div>
           </form>
         </div>
@@ -62,6 +62,10 @@
 
 
 <style scoped>
+  .modal-bg {
+    background-color: #f9f8eb;
+  }
+
   .field {
     width: 20vw;
   }
@@ -99,5 +103,10 @@
   .nkcheck {
     width: 20px;
     margin-top: -7px;
+  }
+
+  .addbtn {
+    background-color: #05004e;
+    color: #f9f8eb;
   }
 </style>

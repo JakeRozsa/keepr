@@ -60,4 +60,8 @@
     max-height: 65vh;
     object-fit: contain;
   }
+
+  .keeprcard {
+    background-color: #a9c6de;
+  }
 </style>

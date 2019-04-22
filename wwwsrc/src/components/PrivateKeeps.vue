@@ -1,5 +1,5 @@
 <template>
-  <div class="privatekeeps col-6 ">
+  <div class="privatekeeps col-4 ">
     <div class="row">
       <div class="col-11 keeprcard card mb-3">
         <div class="row">
@@ -64,7 +64,6 @@
     },
     methods: {
       deleteKeep(keeprData) {
-        debugger
         this.$store.dispatch('deleteKeep', keeprData)
       }
     },
@@ -83,7 +82,9 @@
   .keeprcard {
     display: flex;
     justify-content: center;
+    background-color: #a9c6de;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.555);
+    padding: 5px;
   }
 
 

@@ -166,7 +166,6 @@ export default new Vuex.Store({
     deleteVaultKeep({ commit, dispatch }, payload) {
       api.delete('vaultkeeps/' + payload.vaultId + '/' + payload.keepId.id)
         .then(res => {
-          debugger
           dispatch('getVaultKeeps', payload.vaultId)
         })
     },

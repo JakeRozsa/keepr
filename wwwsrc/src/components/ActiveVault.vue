@@ -1,7 +1,7 @@
 <template>
   <div class="active-vault col-10 offset-1">
     <div class="row">
-      <div class="col-12 card">
+      <div class="col-12">
         <h2>{{activeVault.name}}</h2>
         <h5>{{activeVault.description}}</h5>
       </div>

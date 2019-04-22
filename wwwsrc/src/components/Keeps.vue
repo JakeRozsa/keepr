@@ -1,7 +1,7 @@
 <template>
   <div class="privatekeeps col-4">
     <div class="row">
-      <div class="col-12 keeprcard card">
+      <div class="col-12 keeprcard card-column">
         <div class="row">
           <div class="col-12" @click="$router.push({name:'keep', params: {id:keepData.id}})">
             <img class="pkeep-img card-img-top" :src="keepimg" alt="">
@@ -78,6 +78,14 @@
 
   .keep-img {
     object-fit: contain;
+  }
+
+  .keeprcard {
+    background-color: #a9c6de;
+    max-width: 25vw;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
   }
 
   @media only screen and (max-width: 450px) {
