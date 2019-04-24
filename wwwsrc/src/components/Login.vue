@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 lgnfix">
       <div class="row" v-if="!activeUser.active">
         <div class="col-12 bool-flip" @click="loginForm = !loginForm">
           <p v-if="loginForm">Register here</p>
@@ -95,7 +95,7 @@
     padding: 5px;
     z-index: 5;
     margin-bottom: 5px;
-    height: 80px;
+    height: 92px;
   }
 
   .lgnbtn {
@@ -104,6 +104,10 @@
     color: #f9f8eb;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
 
+  }
+
+  .lgnfix {
+    margin-top: -8px;
   }
 
   .nav-item {
