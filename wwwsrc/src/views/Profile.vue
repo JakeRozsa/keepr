@@ -1,6 +1,6 @@
 <template>
   <div class="Profile row">
-    <div class="col-10 offset-1">
+    <div class="col-12 col-md-10 offset-md-1">
       <div class="row">
         <div class="col-9">
           <div class="row">
@@ -10,21 +10,21 @@
                 Add Keep
               </button>
             </div>
-            <div class="col-12">
+            <div class="col-12 scrolly">
               <div class="row">
                 <private-keeps v-for="keep in keeps" :keeprData="keep"></private-keeps>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-2 offset-1">
+        <div class="col-3 col-md-2 offset-md-1">
           <div class="row">
             <div class="col-12">
               <button type="button" class="btn addbtn" data-toggle="modal" data-target="#VaultModal">Add
                 Vault</button>
               <add-vault></add-vault>
             </div>
-            <div class="col-11 offset-1 mt-2">
+            <div class="col-11 offset-md-1 mt-2">
               <div class="row">
                 <p-vaults v-for="vault in vaults" :vaultData="vault"></p-vaults>
               </div>
@@ -79,5 +79,13 @@
   .addbtn {
     background-color: #05004e;
     color: #f9f8eb;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.753);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .scrolly {
+      overflow-y: scroll;
+      height: 80vh;
+    }
   }
 </style>

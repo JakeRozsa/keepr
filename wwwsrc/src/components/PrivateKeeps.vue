@@ -1,5 +1,5 @@
 <template>
-  <div class="privatekeeps col-4 ">
+  <div class="privatekeeps col-11 col-md-4 ">
     <div class="row">
       <div class="col-11 keeprcard card mb-3">
         <div class="row">
@@ -90,5 +90,11 @@
 
   .pkeep-img {
     margin-top: 5px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    .privatekeeps {
+      margin-left: 4vw;
+    }
   }
 </style>

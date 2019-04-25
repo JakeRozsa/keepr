@@ -1,19 +1,17 @@
 <template>
   <header class="row">
-    <div class="col-12 col-md-6 logo">
+    <div class="col-1 col-md-6 logo">
       <ul class="nav row">
-        <li class="nav-item col-4">
+        <li class="nav-item col-12">
           <img @click="$router.push({name:'home'})" class="klogo" src="@/assets/keeprlogo.png" alt="">
         </li>
-        <li v-if="activeUser.active" class="nav-item col-4">
+        <br>
+        <li v-if="activeUser.active" class="nav-item col-12">
           <a @click="$router.push({name:'profile'})">Dashboard</a>
-        </li>
-        <li class="nav-item col-4">
-          <a @click="$router.push({name:'about'})">About</a>
         </li>
       </ul>
     </div>
-    <div class="col-12 col-md-6 lgnfix">
+    <div class="col-11 col-md-6 lgnfix">
       <div class="row" v-if="!activeUser.active">
         <div class="col-12 bool-flip" @click="loginForm = !loginForm">
           <p v-if="loginForm">Register here</p>
@@ -34,7 +32,7 @@
         </div>
       </div>
       <div class="row" v-else>
-        <div class="col login">
+        <div class="col-12 login">
           <button class="logout lgnbtn" @click="logoutUser">Logout</button>
         </div>
       </div>
@@ -132,7 +130,7 @@
   .logout {
     margin-top: 5px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.651);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.753);
     border-style: none;
   }
 
@@ -154,5 +152,11 @@
     width: 15vw;
     margin-left: 3px;
     border-radius: 4px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    .formsize {
+      width: 33vw;
+    }
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="privatekeeps col-4">
+  <div class="privatekeeps col-12 col-md-4">
     <div class="row">
-      <div class="col-12 keeprcard card-column">
+      <div class="col-12 keeprcard card-column mt-2">
         <div class="row">
           <div class="col-12" @click="$router.push({name:'keep', params: {id:keepData.id}})">
             <img class="pkeep-img card-img-top" :src="keepimg" alt="">
@@ -89,9 +89,10 @@
   }
 
   @media only screen and (max-width: 450px) {
-    .keeps {
+    .keeprcard {
       min-width: 90vw;
-      margin-left: 4vw;
+      max-width: 90vw;
+      margin-left: 5vw;
       text-align: center;
     }
   }

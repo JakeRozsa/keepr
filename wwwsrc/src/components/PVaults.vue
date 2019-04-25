@@ -74,4 +74,13 @@
     -webkit-text-stroke-color: rgb(255, 255, 255);
     text-shadow: 3px 3px 3px black;
   }
+
+  @media only screen and (max-width: 550px) {
+    .vault {
+      height: 20vh;
+      width: 20vw;
+      background-size: contain;
+      margin-right: 2vw;
+    }
+  }
 </style>

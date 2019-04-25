@@ -5,7 +5,7 @@
 
       </div>
       <div class="row">
-        <div class="col-10 offset-1">
+        <div class="col-12 col-md-10 offset-md-1">
           <div class="row">
             <keeps v-for="keep in keeps" :keepData="keep" :vaultData="vault"></keeps>
             <active-keep></active-keep>
