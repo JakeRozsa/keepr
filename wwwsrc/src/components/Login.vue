@@ -93,7 +93,7 @@
     padding: 5px;
     z-index: 5;
     margin-bottom: 5px;
-    height: 92px;
+    height: 95px;
   }
 
   .lgnbtn {
